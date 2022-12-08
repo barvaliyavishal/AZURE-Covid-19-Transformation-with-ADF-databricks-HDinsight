@@ -1,18 +1,24 @@
 {
-	"name": "ds_cases_deaths_raw_csv_dl",
+	"name": "ds_ecdc_raw_csv_http",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_covidreporting_dl",
+			"referenceName": "ls_http_opendata_ecdc_europe_eu",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"relativeURL": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "cases_deaths.csv",
-				"folderPath": "ecdc",
-				"fileSystem": "raw"
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().relativeURL",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
